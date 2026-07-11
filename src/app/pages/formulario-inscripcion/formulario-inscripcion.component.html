@@ -1,0 +1,80 @@
+<div class="container mt-5"> 
+  <h2 class="text-warning">Inscripción al Gimnasio</h2> 
+  
+  <form #formContacto="ngForm" (ngSubmit)="enviar(formContacto)"> 
+    
+    <!-- Nombre --> 
+    <div class="mb-3"> 
+      <label class="form-label text-light">Nombre</label> 
+      <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required minlength="3" maxlength="40" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$" #nombreRef="ngModel" [class.is-invalid]="nombreRef.invalid && nombreRef.touched" placeholder="Ingresar nombre"> 
+      <small class="text-muted"> {{ nombre.length || 0 }}/Max 40 caracteres </small> 
+      
+      <div *ngIf="nombreRef.invalid && nombreRef.touched" class="text-danger d-block mt-1"> 
+        <small *ngIf="nombreRef.errors?.['required']" class="d-block">El nombre es obligatorio</small> 
+        <small *ngIf="nombreRef.errors?.['minlength']" class="d-block">Mínimo 3 caracteres</small> 
+        <small *ngIf="nombreRef.errors?.['maxlength']" class="d-block">Máximo 40 caracteres</small> 
+        <small *ngIf="nombreRef.errors?.['pattern']" class="d-block">El nombre solo puede contener letras y espacios.</small> 
+      </div> 
+    </div> 
+
+    <!-- Rutina --> 
+    <div class="mb-3"> 
+      <label class="form-label text-light">Rutina</label> 
+      <select class="form-select" name="rutina" [(ngModel)]="rutina" required #rutinaRef="ngModel" [class.is-invalid]="rutinaRef.invalid && rutinaRef.touched"> 
+        <option value="">Selecciona una rutina</option> 
+        <option value="Cardio">Cardio</option> 
+        <option value="Hipertrofia">Hipertrofia</option> 
+        <option value="Fuerza">Fuerza</option> 
+        <option value="Crossfit">Crossfit</option> 
+      </select> 
+      <div *ngIf="rutinaRef.invalid && rutinaRef.touched" class="text-danger mt-1"> 
+        <small>Debes seleccionar una rutina</small> 
+      </div> 
+    </div> 
+
+    <!-- Horario --> 
+    <div class="mb-3"> 
+      <label class="form-label text-light">Horario</label> 
+      <select class="form-select" name="horario" [(ngModel)]="horario" required #horarioRef="ngModel" [class.is-invalid]="horarioRef.invalid && horarioRef.touched"> 
+        <option value="">Selecciona un horario</option> 
+        <option value="07:00 - 09:00">07:00 - 09:00</option> 
+        <option value="09:00 - 11:00">09:00 - 11:00</option> 
+        <option value="18:00 - 20:00">18:00 - 20:00</option> 
+        <option value="20:00 - 22:00">20:00 - 22:00</option> 
+      </select> 
+      <div *ngIf="horarioRef.invalid && horarioRef.touched" class="text-danger mt-1"> 
+        <small>Debes seleccionar un horario</small> 
+      </div> 
+    </div> 
+
+    <!-- Email (CORREGIDO DE ETIQUETAS) --> 
+    <div class="mb-3"> 
+      <label class="form-label text-light">Email</label> 
+      <input type="email" class="form-control" name="email" [(ngModel)]="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #emailRef="ngModel" [class.is-invalid]="emailRef.invalid && emailRef.touched" placeholder="Ingresar email"> 
+      
+      <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger mt-1"> 
+        <small *ngIf="emailRef.errors?.['required']" class="d-block">El email es obligatorio</small> 
+        <small *ngIf="emailRef.errors?.['pattern']" class="d-block">Formato inválido. Debe incluir un punto en el dominio (ej: .com, .cl)</small> 
+      </div> 
+    </div> 
+
+    <!-- Botón (Ubicado correctamente fuera del bloque de email) --> 
+    <button class="btn btn-warning" type="submit" [disabled]="formContacto.invalid"> 
+      Inscribir Usuario 
+    </button> 
+  </form> 
+
+  <!-- RESULTADO GUARDADO LOCAL --> 
+  <div *ngIf="datosGuardados"> 
+    <hr class="text-secondary"> 
+    <div class="card bg-dark text-warning mt-4 border-warning"> 
+      <div class="card-body"> 
+        <h5>Última inscripción realizada</h5> 
+        <p class="mb-1"><strong>Nombre:</strong> {{ datosGuardados.nombre }}</p> 
+        <p class="mb-1"><strong>Rutina:</strong> {{ datosGuardados.rutina }}</p> 
+        <p class="mb-1"><strong>Horario:</strong> {{ datosGuardados.horario }}</p> 
+        <p class="mb-1"><strong>Email:</strong> {{ datosGuardados.email }}</p> 
+      </div> 
+    </div> 
+  </div> 
+</div>

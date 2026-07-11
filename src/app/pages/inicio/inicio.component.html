@@ -1,0 +1,27 @@
+<div class="container mt-5" style="max-width: 400px;"> 
+  <h2 class="text-center text-warning mb-4">Control de Acceso</h2> 
+  
+  <!-- Alerta de error con *ngIf -->
+  <div *ngIf="error" class="alert alert-danger text-center animate__animated animate__fadeIn"> 
+    {{ error }} 
+  </div> 
+
+  <form #formLogin="ngForm" (ngSubmit)="login()"> 
+    <!-- Usuario -->
+    <div class="mb-3"> 
+      <label class="form-label text-light">Usuario</label> 
+      <input type="text" class="form-control" [(ngModel)]="usuario" name="usuario" required placeholder="Introduce tu usuario"> 
+    </div> 
+
+    <!-- Contraseña -->
+    <div class="mb-3"> 
+      <label class="form-label text-light">Contraseña</label> 
+      <input type="password" class="form-control" [(ngModel)]="password" name="password" required placeholder="••••••••"> 
+    </div> 
+
+    <!-- Botón de ingreso que se deshabilita si los campos están vacíos -->
+    <button type="submit" class="btn btn-warning w-100 mt-2" [disabled]="formLogin.invalid">
+      Ingresar al Sistema
+    </button> 
+  </form> 
+</div>
