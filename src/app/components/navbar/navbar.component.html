@@ -1,17 +1,34 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-warning">
   <div class="container-fluid">
-    <!-- CAMBIADO: Quitamos href="#" y pusimos routerLink="/" 👇 -->
-    <a class="navbar-brand text-warning fw-bold" routerLink="/">🏋️‍♂️ GymApp</a>
-    
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" routerLink="/inscripcion" routerLinkActive="active text-warning">Inscripción</a>
-      <a class="nav-link" routerLink="/usuarios" routerLinkActive="active text-warning">Ver Inscritos</a>
-      <!-- <a class="nav-link text-danger" routerLink="/">Cerrar Sesión</a> -->
-       <!-- Busca la línea de Cerrar Sesión y cámbiala por esta: -->
-      <button class="nav-link text-danger bg-transparent border-0" (click)="cerrarSesion()">
-         Cerrar Sesión
+
+    <a class="navbar-brand text-warning fw-bold" routerLink="/">
+      🏋️ GymApp
+    </a>
+
+    <!-- Menú -->
+    <div class="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
+
+      <a
+        class="nav-link text-light"
+        routerLink="/inscripcion"
+        routerLinkActive="active">
+        Inscripción
+      </a>
+
+      <a
+        class="nav-link text-light"
+        routerLink="/usuarios"
+        routerLinkActive="active">
+        Ver Inscritos
+      </a>
+
+      <button
+        class="btn btn-outline-danger"
+        (click)="cerrarSesion()">
+        Cerrar Sesión
       </button>
 
     </div>
+
   </div>
-</nav>
+D
