@@ -18,7 +18,7 @@ export class InicioComponent {
   constructor(private router: Router) {}
 
   login() {
-    // Recuerda escribir "admin" en minúsculas y contraseña "1234"
+    // Recuerda escribir "admin" en minúsculas y contraseña "12345678"
     if (this.usuario.trim() === 'admin' && this.password === '12345678') {
       this.error = ''; 
        // 🔑 GUARDAMOS EL ESTADO DE LA SESIÓN ASIGNANDO 'true'
