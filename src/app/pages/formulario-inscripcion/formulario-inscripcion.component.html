@@ -1,87 +1,250 @@
-<div style="min-height: 100vh; background-image: url('https://media.istockphoto.com/id/1263476535/photo/exercise-machines-in-a-modern-gym.jpg?s=612x612&w=0&k=20&c=BL5l4xGlhEWIr665-_aaUSDE57tOEwspTup5BH_3pH8='); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; justify-content: center; align-items: center;">
+<div
+  style="
+    min-height: 100vh;
+    background-image: url('https://media.istockphoto.com/id/1263476535/photo/exercise-machines-in-a-modern-gym.jpg?s=612x612&w=0&k=20&c=BL5l4xGlhEWIr665-_aaUSDE57tOEwspTup5BH_3pH8=');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  "
+>
 
-  <div class="container" style="max-width: 400px;">
+  <div class="container" style="max-width: 450px;">
 
-  <h2 class="text-warning">Inscripción al Gimnasio</h2> 
-  
-  <form #formContacto="ngForm" (ngSubmit)="enviar(formContacto)"> 
-    
-    <!-- Nombre --> 
-    <div class="mb-3"> 
-      <label class="form-label text-light">Nombre</label> 
-      <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required minlength="3" maxlength="40" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$" #nombreRef="ngModel" [class.is-invalid]="nombreRef.invalid && nombreRef.touched" placeholder="Ingresar nombre"> 
-      <small class="text-muted"> {{ nombre.length || 0 }}/Max 40 caracteres </small> 
-      
-      <div *ngIf="nombreRef.invalid && nombreRef.touched" class="text-danger d-block mt-1"> 
-        <small *ngIf="nombreRef.errors?.['required']" class="d-block">El nombre es obligatorio</small> 
-        <small *ngIf="nombreRef.errors?.['minlength']" class="d-block">Mínimo 3 caracteres</small> 
-        <small *ngIf="nombreRef.errors?.['maxlength']" class="d-block">Máximo 40 caracteres</small> 
-        <small *ngIf="nombreRef.errors?.['pattern']" class="d-block">El nombre solo puede contener letras y espacios.</small> 
-      </div> 
-    </div> 
+    <div
+      style="
+        background: rgba(255,255,255,0.95);
+        padding: 35px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      "
+    >
 
-    <!-- Rutina --> 
-    <div class="mb-3"> 
-      <label class="form-label text-light">Rutina</label> 
-      <select class="form-select" name="rutina" [(ngModel)]="rutina" required #rutinaRef="ngModel" [class.is-invalid]="rutinaRef.invalid && rutinaRef.touched"> 
-        <option value="">Selecciona una rutina</option> 
-        <option value="Cardio">Cardio</option> 
-        <option value="Hipertrofia">Hipertrofia</option> 
-        <option value="Fuerza">Fuerza</option> 
-        <option value="Crossfit">Crossfit</option> 
-      </select> 
-      <div *ngIf="rutinaRef.invalid && rutinaRef.touched" class="text-danger mt-1"> 
-        <small>Debes seleccionar una rutina</small> 
-      </div> 
-    </div> 
+      <h2
+        style="
+          color:#1e2a78;
+          font-weight:700;
+          font-size:2.7rem;
+          text-align:center;
+          margin-bottom:30px;
+        "
+      >
+        Inscripción al Gimnasio
+      </h2>
 
-    <!-- Horario --> 
-    <div class="mb-3"> 
-      <label class="form-label text-light">Horario</label> 
-      <select class="form-select" name="horario" [(ngModel)]="horario" required #horarioRef="ngModel" [class.is-invalid]="horarioRef.invalid && horarioRef.touched"> 
-        <option value="">Selecciona un horario</option> 
-        <option value="07:00 - 09:00">07:00 - 09:00</option> 
-        <option value="09:00 - 11:00">09:00 - 11:00</option>
-        <option value="11:00 - 13:00">11:00 - 13:00</option>
-        <option value="13:00 - 15:00">13:00 - 15:00</option>
-        <option value="15:00 - 17:00">15:00 - 17:00</option>
-        <option value="17:00 - 18:00">17:00 - 18:00</option>
-        <option value="18:00 - 20:00">18:00 - 20:00</option> 
-        <option value="20:00 - 22:00">20:00 - 22:00</option> 
-      </select> 
-      <div *ngIf="horarioRef.invalid && horarioRef.touched" class="text-danger mt-1"> 
-        <small>Debes seleccionar un horario</small> 
-      </div> 
-    </div> 
+      <form #formContacto="ngForm" (ngSubmit)="enviar(formContacto)">
 
-    <!-- Email (CORREGIDO DE ETIQUETAS) --> 
-    <div class="mb-3"> 
-      <label class="form-label text-light">Email</label> 
-      <input type="email" class="form-control" name="email" [(ngModel)]="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #emailRef="ngModel" [class.is-invalid]="emailRef.invalid && emailRef.touched" placeholder="Ingresar email"> 
-      
-      <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger mt-1"> 
-        <small *ngIf="emailRef.errors?.['required']" class="d-block">El email es obligatorio</small> 
-        <small *ngIf="emailRef.errors?.['pattern']" class="d-block">Formato inválido. Debe incluir un punto en el dominio (ej: .com, .cl)</small> 
-      </div> 
-    </div> 
+        <!-- Nombre -->
+        <div class="mb-3">
 
-    <!-- Botón (Ubicado correctamente fuera del bloque de email) --> 
-    <button class="btn btn-warning" type="submit" [disabled]="formContacto.invalid"> 
-      Inscribir Usuario 
-    </button> 
-  </form> 
+          <label
+            class="form-label"
+            style="
+              color:#1e2a78;
+              font-weight:700;
+              font-size:1.2rem;
+            "
+          >
+            Nombre
+          </label>
 
-  <!-- RESULTADO GUARDADO LOCAL --> 
-  <div *ngIf="datosGuardados"> 
-    <hr class="text-secondary"> 
-    <div class="card bg-dark text-warning mt-4 border-warning"> 
-      <div class="card-body"> 
-        <h5>Última inscripción realizada</h5> 
-        <p class="mb-1"><strong>Nombre:</strong> {{ datosGuardados.nombre }}</p> 
-        <p class="mb-1"><strong>Rutina:</strong> {{ datosGuardados.rutina }}</p> 
-        <p class="mb-1"><strong>Horario:</strong> {{ datosGuardados.horario }}</p> 
-        <p class="mb-1"><strong>Email:</strong> {{ datosGuardados.email }}</p> 
-      </div> 
-    </div> 
-  </div> 
+        <input
+            type="text" class="form-control"
+            name="nombre" [(ngModel)]="nombre"
+             required minlength="3" maxlength="20" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$"  #nombreRef="ngModel" [class.is-invalid]="nombreRef.invalid && nombreRef.touched"  placeholder="Ingresar nombre" 
+             style="
+              border-radius:12px;  padding:12px;
+              border:2px solid #d6d6d6;
+              "
+              >
+
+        <small style="color:#6c757d;">
+        {{ nombre.length || 3 }}/Max 20 caracteres
+        </small>
+
+      <div *ngIf="nombreRef.invalid && nombreRef.touched" class="text-danger mt-1">
+
+      <small *ngIf="nombreRef.errors?.['required']" class="d-block">
+        El nombre es obligatorio
+      </small>
+
+      <small *ngIf="nombreRef.errors?.['minlength']" class="d-block">
+        El nombre debe tener al menos 3 caracteres
+      </small>
+
+      <small *ngIf="nombreRef.errors?.['maxlength']" class="d-block">
+      El nombre no puede superar los 20 caracteres
+      </small>
+
+      <small *ngIf="nombreRef.errors?.['pattern']" class="d-block">
+      Solo se permiten letras y espacios
+     </small>
+
+  </div>
+
+        </div>
+
+        <!-- Rutina -->
+        <div class="mb-3">
+
+          <label
+            class="form-label"
+            style="
+              color:#1e2a78;
+              font-weight:700;
+              font-size:1.2rem;
+            "
+          >
+            Rutina
+          </label>
+
+         <select
+          class="form-select"
+          name="rutina"
+          [(ngModel)]="rutina"
+          required
+          #rutinaRef="ngModel"
+          [class.is-invalid]="rutinaRef.invalid && (rutinaRef.touched || formContacto.submitted)"
+          style="
+          border-radius:12px;
+          padding:12px;
+          border:2px solid #d6d6d6;
+        "
+      >
+        <option value="">Selecciona una rutina</option>
+        <option value="Cardio">Cardio</option>
+        <option value="Hipertrofia">Hipertrofia</option>
+        <option value="Fuerza">Fuerza</option>
+        <option value="Crossfit">Crossfit</option>
+      </select>
+
+      <div
+        *ngIf="rutinaRef.invalid && (rutinaRef.touched || formContacto.submitted)"
+        class="text-danger mt-1"
+      >
+        <small>Debes seleccionar una rutina</small>
+</div>
+
+        </div>
+
+      <!-- Horario -->
+      <div class="mb-3">
+
+          <label
+            class="form-label"
+            style="
+              color:#1e2a78;
+              font-weight:700;
+              font-size:1.2rem;
+            "
+          >
+            Horario
+          </label>
+
+          <select
+            class="form-select"
+            name="horario"
+            [(ngModel)]="horario"
+            required
+            #horarioRef="ngModel"
+            [class.is-invalid]="horarioRef.invalid && (horarioRef.touched || formContacto.submitted)"
+            style="
+              border-radius:12px;
+              padding:12px;
+              border:2px solid #d6d6d6;
+            "
+          >
+            <option value="">Selecciona un horario</option>
+            <option value="07:00 - 09:00">07:00 - 09:00</option>
+            <option value="09:00 - 11:00">09:00 - 11:00</option>
+            <option value="11:00 - 13:00">11:00 - 13:00</option>
+            <option value="13:00 - 15:00">13:00 - 15:00</option>
+            <option value="15:00 - 17:00">15:00 - 17:00</option>
+            <option value="17:00 - 18:00">17:00 - 18:00</option>
+            <option value="18:00 - 20:00">18:00 - 20:00</option>
+            <option value="20:00 - 22:00">20:00 - 22:00</option>
+          </select>
+
+          <div
+            *ngIf="horarioRef.invalid && (horarioRef.touched || formContacto.submitted)"
+            class="text-danger mt-1"
+          >
+            <small>Debes seleccionar un horario</small>
+          </div>
+      </div>
+
+      <!-- Email -->
+        <div class="mb-4">
+
+          <label
+            class="form-label"
+            style="
+              color:#1e2a78;
+              font-weight:700;
+              font-size:1.2rem;
+            "
+          >
+            Email
+          </label>
+
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="email"
+            required
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            #emailRef="ngModel"
+            [class.is-invalid]="emailRef.invalid && (emailRef.touched || formContacto.submitted)"
+            placeholder="Ingresar email"
+            style="
+              border-radius:12px;
+              padding:12px;
+              border:2px solid #d6d6d6;
+            "
+          >
+
+          <div
+            *ngIf="emailRef.invalid && (emailRef.touched || formContacto.submitted)"
+            class="text-danger mt-1"
+          >
+
+            <small
+              *ngIf="emailRef.errors?.['required']"
+              class="d-block"
+            >
+              El e-mail es obligatorio
+            </small>
+
+             <small *ngIf="emailRef.errors?.['pattern']" class="d-block">Formato inválido. Debe incluir un punto en el dominio (ej: .com, .cl)
+             </small> 
+
+          </div>
+        </div>
+
+        <!-- Botón -->
+        <button
+          class="btn btn-lg w-100 shadow-lg fw-bold py-3"
+          type="submit"
+          [disabled]="formContacto.invalid"
+          style="
+            background-color:#1e2a78;
+            border-color:#1e2a78;
+            color:white;
+            font-size:1.1rem;
+          "
+        >
+          <i class="bi bi-person-plus-fill me-2"></i>
+          Inscribir Usuario
+        </button>
+
+    </form>
+
+    </div>
+
+  </div>
+
 </div>

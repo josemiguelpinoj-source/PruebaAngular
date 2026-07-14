@@ -1,30 +1,128 @@
-<div style="min-height: 100vh; background-image: url('https://media.istockphoto.com/id/2154202699/photo/dark-gym-interior-with-sports-equipment-empty-room-in-the-morning.jpg?s=612x612&w=0&k=20&c=Z2tt0g_VscMP0blcJk4oka7h3niwntI3UnLZR9tmR_g='); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; justify-content: center; align-items: center;">
+<div
+  style="
+    min-height: 100vh;
+    background-image: url('https://media.istockphoto.com/id/2154202699/photo/dark-gym-interior-with-sports-equipment-empty-room-in-the-morning.jpg?s=612x612&w=0&k=20&c=Z2tt0g_VscMP0blcJk4oka7h3niwntI3UnLZR9tmR_g=');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  "
+>
+
   <div class="container" style="max-width: 400px;">
 
-  <h2 class="text-center text-warning mb-4">Control de Acceso</h2>
-  
-   
-  <!-- Alerta de error con *ngIf -->
-  <div *ngIf="error" class="alert alert-danger text-center animate__animated animate__fadeIn"> 
-    {{ error }} 
-  </div> 
+    <div
+      style="
+        background: rgba(0,0,0,0.75);
+        padding: 35px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        backdrop-filter: blur(8px);
+      "
+    >
 
-  <form #formLogin="ngForm" (ngSubmit)="login()"> 
-    <!-- Usuario -->
-    <div class="mb-3"> 
-      <label class="form-label text-light">Usuario</label> 
-      <input type="text" class="form-control" [(ngModel)]="usuario" name="usuario"required minlength="3" maxlength="20"required minlength="3" maxlength="40"required  placeholder="Introduce tu usuario"> 
-    </div> 
+      <h2
+        class="text-center mb-4"
+        style="
+          color: #ffc107;
+          font-size: 2.8rem;
+          font-weight: 700;
+        "
+      >
+        Control de Acceso
+      </h2>
 
-    <!-- Contraseña -->
-    <div class="mb-3"> 
-      <label class="form-label text-light">Contraseña</label> 
-      <input type="password" class="form-control" [(ngModel)]="password" name="password" required minlength="3" maxlength="20" required placeholder="••••••••"> 
-    </div> 
+      <!-- Alerta -->
+      <div
+        *ngIf="error"
+        class="alert alert-danger text-center animate__animated animate__fadeIn"
+      >
+        {{ error }}
+      </div>
 
-    <!-- Botón de ingreso que se deshabilita si los campos están vacíos -->
-    <button type="submit" class="btn btn-warning w-100 mt-2" [disabled]="formLogin.invalid">
-      Ingresar al Sistema
-    </button> 
-  </form> 
+      <form #formLogin="ngForm" (ngSubmit)="login()">
+
+        <!-- Usuario -->
+        <div class="mb-4">
+          <label
+            class="form-label"
+            style="
+              color: white;
+              font-size: 1.2rem;
+              font-weight: 600;
+            "
+          >
+            Usuario
+          </label>
+
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="usuario"
+            name="usuario"
+            required
+            minlength="3"
+            maxlength="20"
+            placeholder="Introduce tu usuario"
+            style="
+              height: 55px;
+              border-radius: 12px;
+              font-size: 1.1rem;
+            "
+          >
+        </div>
+
+        <!-- Contraseña -->
+        <div class="mb-4">
+          <label
+            class="form-label"
+            style="
+              color: white;
+              font-size: 1.2rem;
+              font-weight: 600;
+            "
+          >
+            Contraseña
+          </label>
+
+          <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="password"
+            name="password"
+            required
+            minlength="3"
+            maxlength="20"
+            placeholder="••••••••"
+            style="
+              height: 55px;
+              border-radius: 12px;
+              font-size: 1.1rem;
+            "
+          >
+        </div>
+
+        <!-- Botón -->
+        <button
+          type="submit"
+          class="btn btn-warning w-100 fw-bold"
+          [disabled]="formLogin.invalid"
+          style="
+            height: 60px;
+            font-size: 1.3rem;
+            border-radius: 12px;
+          "
+        >
+          Ingresar al Sistema
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
 </div>
