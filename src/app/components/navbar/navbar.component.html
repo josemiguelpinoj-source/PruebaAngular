@@ -4,20 +4,31 @@
     <!-- <a class="navbar-brand text-warning fw-bold" routerLink="/">
       🏋️ GymApp
     </a> -->
-
-    <!-- se desabilita boton GymApp -->
+    <!-- //se desabilita boton GymApp -->
     <a class="navbar-brand text-warning fw-bold" style="pointer-events: none; cursor: default;"> 🏋️ GymApp </a>
-   
     <!-- Menú -->
     <div class="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
-
-      <a routerLink="/inscripcion" class="btn text-white btn-outline-warning border-0 px-3 mx-1">
+<!-- 
+      <a
+        class="nav-link text-light"
+        routerLink="/inscripcion"
+        routerLinkActive="active">
         Inscripción
       </a>
 
-      <a routerLink="/ver-inscritos" class="btn text-white btn-outline-warning border-0 px-3 mx-1">
+      <a
+        class="nav-link text-light"
+        routerLink="/usuarios"
+        routerLinkActive="active">
+        Ver Inscritos
+      </a> -->
+      <a class="nav-link btn-gym" routerLink="/inscripcion" routerLinkActive="active">
+        Inscripción
+      </a>
+      <a class="nav-link btn-gym" routerLink="/usuarios" routerLinkActive="active">
         Ver Inscritos
       </a>
+
 
       <button
         class="btn btn-outline-danger"
