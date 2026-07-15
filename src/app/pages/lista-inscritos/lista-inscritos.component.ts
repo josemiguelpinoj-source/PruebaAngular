@@ -1,47 +1,71 @@
 import { Component, OnInit } from '@angular/core'; 
 import { CommonModule } from '@angular/common'; 
 import { RouterModule } from '@angular/router'; 
-// <-- 1. IMPORTANTE: Importamos esto para que funcione el botón del HTML
+import Swal from 'sweetalert2'; 
 
-@Component({
-  selector: 'app-lista-inscritos',
-  standalone: true,
+@Component({ 
+  selector: 'app-lista-inscritos', 
+  standalone: true, 
   imports: [CommonModule, RouterModule], 
-  // <-- 2. IMPORTANTE: Agregado aquí también
-  templateUrl: './lista-inscritos.component.html',
-  styleUrl: './lista-inscritos.component.css'
-})
+  templateUrl: './lista-inscritos.component.html', 
+  styleUrl: './lista-inscritos.component.css' 
+}) 
 export class ListaInscritosComponent implements OnInit { 
   inscritos: any[] = []; 
 
   ngOnInit() { 
-    this.cargarInscritos(); 
-    // Ejecuta la lectura del almacenamiento local
+    this.cargarInscritos(); // Ejecuta la lectura del almacenamiento local 
   } 
 
-  // 📝 Creamos la función para leer los datos de forma reutilizable
-  cargarInscritos() {
+  // 📝 Creamos la función para leer los datos de forma reutilizable 
+  cargarInscritos() { 
     const datosLocal = localStorage.getItem('usuariosInscritos'); 
     if (datosLocal) { 
       this.inscritos = JSON.parse(datosLocal); 
-    } else {
-      this.inscritos = [];
-    }
-  }
-
-  // 🔥 FUNCIÓN PARA ELIMINAR (Ahora sí está ubicada correctamente ADENTRO de la clase)
-  eliminarInscrito(index: number) { 
-    const seguro = confirm('¿Estás seguro de que deseas eliminar este usuario inscrito?'); 
-    
-    if (seguro) { 
-      // 1. Eliminamos el alumno usando su posición en la tabla
-      this.inscritos.splice(index, 1); 
-      
-      // 2. Guardamos la lista actualizada en el LocalStorage
-      localStorage.setItem('usuariosInscritos', JSON.stringify(this.inscritos)); 
-      
-      // 3. Recargamos la vista visual inmediatamente
-      this.cargarInscritos(); 
+    } else { 
+      this.inscritos = []; 
     } 
+  } 
+
+  // 🔥 NUEVA FUNCIÓN PARA ELIMINAR CON SWEETALERT2
+  eliminarInscrito(index: number) { 
+    // Obtenemos el usuario de la lista usando su posición
+    const usuario = this.inscritos[index];
+
+    // Lanzamos la ventana emergente de confirmación
+    Swal.fire({
+      title: '¿Estás seguro?',
+      html: `¿Deseas eliminar a <b>${usuario.nombre}</b> de la lista de inscritos?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#ffc107',
+      cancelButtonColor: '#dc3545',
+      background: '#212529',
+      color: '#ffffff'
+    }).then((result) => {
+      // Si el usuario confirma la acción
+      if (result.isConfirmed) {
+        // 1. Eliminamos el alumno usando su posición en la tabla 
+        this.inscritos.splice(index, 1); 
+
+        // 2. Guardamos la lista actualizada en el LocalStorage 
+        localStorage.setItem('usuariosInscritos', JSON.stringify(this.inscritos)); 
+
+        // 3. Recargamos la vista visual inmediatamente 
+        this.cargarInscritos(); 
+
+        // 4. Mostramos una alerta de éxito final
+        Swal.fire({
+          title: '¡Eliminado!',
+          text: `${usuario.nombre} ha sido borrado correctamente.`,
+          icon: 'success',
+          confirmButtonColor: '#ffc107',
+          background: '#212529',
+          color: '#ffffff'
+        });
+      }
+    });
   } 
 } // <-- Llave de cierre final del componente
