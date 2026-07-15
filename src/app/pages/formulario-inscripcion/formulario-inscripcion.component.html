@@ -8,11 +8,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 40px;
   "
 >
 
-  <div class="container" style="max-width: 450px;">
+  <div class="container" style="max-width: 550px;">
 
     <div
       style="
@@ -55,7 +55,9 @@
         <input
             type="text" class="form-control"
             name="nombre" [(ngModel)]="nombre"
-             required minlength="3" maxlength="20" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$"  #nombreRef="ngModel" [class.is-invalid]="nombreRef.invalid && nombreRef.touched"  placeholder="Ingresar nombre" 
+             required minlength="3" maxlength="20" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$"  #nombreRef="ngModel" [class.is-invalid]="nombreRef.invalid && nombreRef.touched"
+             
+               placeholder="Ingresar nombre" 
              style="
               border-radius:12px;  padding:12px;
               border:2px solid #d6d6d6;
@@ -67,19 +69,15 @@
         </small>
 
       <div *ngIf="nombreRef.invalid && nombreRef.touched" class="text-danger mt-1">
-
       <small *ngIf="nombreRef.errors?.['required']" class="d-block">
         El nombre es obligatorio
       </small>
-
       <small *ngIf="nombreRef.errors?.['minlength']" class="d-block">
         El nombre debe tener al menos 3 caracteres
       </small>
-
       <small *ngIf="nombreRef.errors?.['maxlength']" class="d-block">
       El nombre no puede superar los 20 caracteres
       </small>
-
       <small *ngIf="nombreRef.errors?.['pattern']" class="d-block">
       Solo se permiten letras y espacios
      </small>
@@ -243,6 +241,17 @@
         </button>
 
     </form>
+    <!-- RESULTADO GUARDADO LOCAL --> 
+  <div *ngIf="datosGuardados"> 
+    <hr class="text-secondary"> 
+    <div class="card bg-dark text-warning mt-4 border-warning"> 
+      <div class="card-body"> 
+        <h5>Última inscripción realizada</h5> 
+        <p class="mb-1"><strong>Nombre:</strong> {{ datosGuardados.nombre }}</p> 
+        <p class="mb-1"><strong>Rutina:</strong> {{ datosGuardados.rutina }}</p> 
+        <p class="mb-1"><strong>Horario:</strong> {{ datosGuardados.horario }}</p> 
+        <p class="mb-1"><strong>Email:</strong> {{ datosGuardados.email }}</p> 
+      </div>
 
     </div>
 
