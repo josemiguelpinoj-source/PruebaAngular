@@ -14,3 +14,28 @@
     background: #dfddea;
     transform: translateY(-2px);
 }
+
+/* Estilo base para los dos botones de navegación */
+.btn-gym {
+  color: #f8f9fa !important; /* Texto claro */
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out; /* Animación suave */
+}
+
+/* Efecto al pasar el cursor (Hover) */
+.btn-gym:hover {
+  color: #212529 !important; /* El texto cambia a oscuro */
+  background-color: #ffc107; /* Fondo amarillo gimnasio */
+  transform: translateY(-2px); /* Pequeño salto vertical */
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4); /* Destello luminoso */
+}
+
+/* Estilo para la pestaña que se encuentra activa */
+.btn-gym.active {
+  border-bottom: 2px solid #ffc107;
+  color: #ffc107 !important;
+  background-color: rgba(255, 193, 7, 0.1); /* Fondo amarillo muy sutil */
+}

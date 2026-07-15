@@ -1,13 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-warning">
   <div class="container-fluid">
 
-    <a class="navbar-brand text-warning fw-bold" routerLink="/">
+    <!-- <a class="navbar-brand text-warning fw-bold" routerLink="/">
       🏋️ GymApp
-    </a>
-
+    </a> -->
+    <!-- //se desabilita boton GymApp -->
+    <a class="navbar-brand text-warning fw-bold" style="pointer-events: none; cursor: default;"> 🏋️ GymApp </a>
     <!-- Menú -->
     <div class="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
-
+<!-- 
       <a
         class="nav-link text-light"
         routerLink="/inscripcion"
@@ -20,7 +21,14 @@
         routerLink="/usuarios"
         routerLinkActive="active">
         Ver Inscritos
+      </a> -->
+      <a class="nav-link btn-gym" routerLink="/inscripcion" routerLinkActive="active">
+        Inscripción
       </a>
+      <a class="nav-link btn-gym" routerLink="/usuarios" routerLinkActive="active">
+        Ver Inscritos
+      </a>
+
 
       <button
         class="btn btn-outline-danger"
