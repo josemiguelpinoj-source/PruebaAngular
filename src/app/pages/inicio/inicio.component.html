@@ -42,6 +42,7 @@
       >
         {{ error }}
       </div>
+<<<<<<< HEAD
 
       <form #formLogin="ngForm" (ngSubmit)="login()">
 
@@ -126,3 +127,89 @@
   </div>
 
 </div>
+=======
+
+      <form #formLogin="ngForm" (ngSubmit)="login()">
+
+        <!-- Usuario -->
+        <div class="mb-4">
+          <label
+            class="form-label"
+            style="
+              color: white;
+              font-size: 1.2rem;
+              font-weight: 600;
+            "
+          >
+            Usuario
+          </label>
+
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="usuario"
+            name="usuario"
+            required
+            minlength="3"
+            maxlength="20"
+            placeholder="Introduce tu usuario"
+            style="
+              height: 55px;
+              border-radius: 12px;
+              font-size: 1.1rem;
+            "
+          >
+        </div>
+
+        <!-- Contraseña -->
+        <div class="mb-4">
+          <label
+            class="form-label"
+            style="
+              color: white;
+              font-size: 1.2rem;
+              font-weight: 600;
+            "
+          >
+            Contraseña
+          </label>
+
+          <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="password"
+            name="password"
+            required
+            minlength="3"
+            maxlength="20"
+            placeholder="••••••••"
+            style="
+              height: 55px;
+              border-radius: 12px;
+              font-size: 1.1rem;
+            "
+          >
+        </div>
+
+        <!-- Botón -->
+        <button
+          type="submit"
+          class="btn btn-warning w-100 fw-bold"
+          [disabled]="formLogin.invalid"
+          style="
+            height: 60px;
+            font-size: 1.3rem;
+            border-radius: 12px;
+          "
+        >
+          Ingresar al Sistema
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+>>>>>>> desarrollo-jose
