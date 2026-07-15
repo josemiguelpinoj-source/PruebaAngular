@@ -36,9 +36,12 @@
           <td>{{ usuario.horario }}</td>
           <td class="text-white">{{ usuario.email }}</td>
           <td class="text-center">
-            <button class="btn btn-danger btn-sm" (click)="eliminarInscrito(i)">
+            <button 
+              class="btn btn-danger btn-sm" 
+              (click)="eliminarInscrito(i)">
               Eliminar
             </button>
+
           </td>
         </tr>
       </tbody>
