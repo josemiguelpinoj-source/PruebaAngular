@@ -18,15 +18,17 @@ export class InicioComponent {
   constructor(private router: Router) {}
 
   login() {
-    // Recuerda escribir "admin" en minúsculas y contraseña "12345678"
-    if (this.usuario.trim() === 'admin' && this.password === '12345678') {
-      this.error = ''; 
-       // 🔑 GUARDAMOS EL ESTADO DE LA SESIÓN ASIGNANDO 'true'
+    const regexSegura = /^[A-Z].*[\W_].*$/;
+
+    if (!regexSegura.test(this.password)) {
+      this.error = 'La contraseña debe iniciar con mayúscula y contener al menos un signo especial.';
+      return;
+    }
+
+    if (this.usuario.trim() === 'admin' && this.password === 'Admin123.') {
+      this.error = '';
       localStorage.setItem('isLoggedIn', 'true');
-      
-      // 3. Redireccionamos a la ruta del formulario que configuramos en las rutas ('inscripcion')
-      this.router.navigate(['/inscripcion']); 
-      
+      this.router.navigate(['/inscripcion']);
     } else {
       this.error = 'Usuario o contraseña incorrectos. Inténtalo de nuevo.';
     }
