@@ -33,9 +33,10 @@ export class ListaInscritosComponent implements OnInit {
     const usuario = this.inscritos[index];
 
     // Lanzamos la ventana emergente de confirmación
+    // 🛡️ SECURITY: Usamos 'text' en lugar de 'html' para prevenir vulnerabilidades de XSS / Inyección HTML con nombres de usuario no sanitizados
     Swal.fire({
       title: '¿Estás seguro?',
-      html: `¿Deseas eliminar a <b>${usuario.nombre}</b> de la lista de inscritos?`,
+      text: `¿Deseas eliminar a ${usuario.nombre} de la lista de inscritos?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
