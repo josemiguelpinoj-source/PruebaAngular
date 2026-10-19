@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ListaInscritosComponent } from './lista-inscritos.component';
+import { provideRouter } from '@angular/router';
+import Swal from 'sweetalert2';
 
 describe('ListaInscritosComponent', () => {
   let component: ListaInscritosComponent;
@@ -8,7 +9,8 @@ describe('ListaInscritosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListaInscritosComponent]
+      imports: [ListaInscritosComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 
@@ -19,5 +21,19 @@ describe('ListaInscritosComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should escape HTML in usuario.nombre to prevent XSS when calling Swal.fire', () => {
+    const swalSpy = spyOn(Swal, 'fire').and.returnValue(Promise.resolve({ isConfirmed: false } as any));
+    component.inscritos = [
+      { nombre: '<script>alert("xss")</script>', rutina: 'Cardio', horario: '09:00', email: 'test@example.com' }
+    ];
+
+    component.eliminarInscrito(0);
+
+    expect(swalSpy).toHaveBeenCalled();
+    const swalArgs = swalSpy.calls.mostRecent().args[0] as any;
+    expect(swalArgs.html).toContain('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
+    expect(swalArgs.html).not.toContain('<script>');
   });
 });
