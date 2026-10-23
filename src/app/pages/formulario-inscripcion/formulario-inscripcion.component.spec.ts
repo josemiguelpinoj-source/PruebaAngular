@@ -1,20 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import * as cmp from './formulario-inscripcion.component';
+import { FormularioComponent } from './formulario-inscripcion.component';
 
-// Support both named and default exports from the component file
-const FormularioInscripcionComponent: any = (cmp as any).FormularioInscripcionComponent || (cmp as any).default;
-
-describe('FormularioInscripcionComponent', () => {
-  let component: any;
-  let fixture: ComponentFixture<any>;
+describe('FormularioComponent', () => {
+  let component: FormularioComponent;
+  let fixture: ComponentFixture<FormularioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FormularioInscripcionComponent]
+      imports: [FormularioComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormularioInscripcionComponent);
+    fixture = TestBed.createComponent(FormularioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
