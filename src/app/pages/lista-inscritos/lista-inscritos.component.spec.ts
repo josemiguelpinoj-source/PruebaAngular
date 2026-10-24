@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
 import { ListaInscritosComponent } from './lista-inscritos.component';
 
 describe('ListaInscritosComponent', () => {
@@ -8,7 +8,8 @@ describe('ListaInscritosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListaInscritosComponent]
+      imports: [ListaInscritosComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 
