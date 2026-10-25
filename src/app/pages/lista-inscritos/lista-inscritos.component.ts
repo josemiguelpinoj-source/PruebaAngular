@@ -27,15 +27,31 @@ export class ListaInscritosComponent implements OnInit {
     } 
   } 
 
+  // 🛡️ Escapa caracteres HTML para prevenir vulnerabilidades de XSS
+  private escapeHtml(str: string): string {
+    if (!str) return '';
+    return str.replace(/[&<>"']/g, (m) => {
+      const map: { [key: string]: string } = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      };
+      return map[m] || m;
+    });
+  }
+
   // 🔥 NUEVA FUNCIÓN PARA ELIMINAR CON SWEETALERT2
   eliminarInscrito(index: number) { 
     // Obtenemos el usuario de la lista usando su posición
     const usuario = this.inscritos[index];
+    const nombreSeguro = this.escapeHtml(usuario.nombre);
 
     // Lanzamos la ventana emergente de confirmación
     Swal.fire({
       title: '¿Estás seguro?',
-      html: `¿Deseas eliminar a <b>${usuario.nombre}</b> de la lista de inscritos?`,
+      html: `¿Deseas eliminar a <b>${nombreSeguro}</b> de la lista de inscritos?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
