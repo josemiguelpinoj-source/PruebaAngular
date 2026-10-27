@@ -3,10 +3,9 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-formulario',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './formulario-inscripcion.component.html'
+    selector: 'app-formulario',
+    imports: [FormsModule, CommonModule],
+    templateUrl: './formulario-inscripcion.component.html'
 })
 export class FormularioComponent {
   nombre = '';

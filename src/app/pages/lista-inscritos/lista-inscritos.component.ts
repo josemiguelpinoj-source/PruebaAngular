@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core'; 
 import { CommonModule } from '@angular/common'; 
 import { RouterModule } from '@angular/router'; 
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2/dist/sweetalert2.esm.js';
 
-@Component({ 
-  selector: 'app-lista-inscritos', 
-  standalone: true, 
-  imports: [CommonModule, RouterModule], 
-  templateUrl: './lista-inscritos.component.html', 
-  styleUrl: './lista-inscritos.component.css' 
+@Component({
+    selector: 'app-lista-inscritos',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './lista-inscritos.component.html',
+    styleUrl: './lista-inscritos.component.css'
 }) 
 export class ListaInscritosComponent implements OnInit { 
   inscritos: any[] = []; 

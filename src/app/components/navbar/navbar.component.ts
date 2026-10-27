@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router'; // <-- Asegúrate de tener Router importado aquí
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [RouterModule], // <-- Módulo para que funcionen los routerLink del HTML
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    imports: [RouterModule], // <-- Módulo para que funcionen los routerLink del HTML
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
   

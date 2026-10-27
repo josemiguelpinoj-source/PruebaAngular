@@ -4,10 +4,9 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router'; // 1. IMPORTANTE: Importamos el Router para poder cambiar de página
 
 @Component({
-  selector: 'app-inicio',
-  standalone: true,
-  imports: [FormsModule, CommonModule], 
-  templateUrl: './inicio.component.html'
+    selector: 'app-inicio',
+    imports: [FormsModule, CommonModule],
+    templateUrl: './inicio.component.html'
 })
 export class InicioComponent {
   usuario = '';

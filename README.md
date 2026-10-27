@@ -1,27 +1,43 @@
 # AppGimnacio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Aplicación web para gestionar el acceso y las inscripciones de un gimnasio. Permite iniciar sesión, registrar usuarios, consultar las inscripciones y eliminar registros. La información de los inscritos se almacena en `localStorage`.
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Node.js `20.19` o superior.
+- npm incluido con Node.js.
 
-## Code scaffolding
+## Instalación y ejecución
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm ci
+npm start
+```
 
-## Build
+La aplicación estará disponible en `http://localhost:4200/`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Comandos
 
-## Running unit tests
+| Comando | Descripción |
+| --- | --- |
+| `npm start` | Inicia el servidor de desarrollo. |
+| `npm run build` | Compila la aplicación para producción en `dist/`. |
+| `npm test -- --watch=false` | Ejecuta las pruebas unitarias una vez con Karma y Chrome. |
+| `npm audit` | Revisa vulnerabilidades conocidas en las dependencias. |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Cambios técnicos documentados
 
-## Running end-to-end tests
+- Actualización de Angular 18 a Angular 21 mediante las migraciones oficiales. Los componentes standalone y sus pruebas usan la configuración correspondiente.
+- Configuración de Bootstrap desde `src/bootstrap.scss`, incluyendo los estilos utilizados por la aplicación para reducir el CSS inicial.
+- Uso del punto de entrada ESM de SweetAlert2 para mejorar su compatibilidad con la optimización del build.
+- Overrides de `undici` y `uuid` para utilizar versiones corregidas en dependencias indirectas. `chokidar` se declara para mantener compatible el lockfile con npm 10.
+- Configuración de pruebas para importar componentes standalone y proporcionar el router donde es necesario.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Verificaciones
 
-## Further help
+Después de los cambios se verificó:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `npm ci`: instalación limpia completada.
+- `npm run build`: compilación correcta; bundle inicial de aproximadamente 492 kB, bajo el presupuesto de 500 kB.
+- `npm test -- --watch=false`: 8 pruebas aprobadas.
+- `npm audit`: 0 vulnerabilidades reportadas.
