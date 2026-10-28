@@ -31,10 +31,10 @@ export class ListaInscritosComponent implements OnInit {
     // Obtenemos el usuario de la lista usando su posición
     const usuario = this.inscritos[index];
 
-    // Lanzamos la ventana emergente de confirmación
+    // Lanzamos la ventana emergente de confirmación (usando 'text' para prevenir inyección HTML / XSS)
     Swal.fire({
       title: '¿Estás seguro?',
-      html: `¿Deseas eliminar a <b>${usuario.nombre}</b> de la lista de inscritos?`,
+      text: `¿Deseas eliminar a ${usuario.nombre} de la lista de inscritos?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
