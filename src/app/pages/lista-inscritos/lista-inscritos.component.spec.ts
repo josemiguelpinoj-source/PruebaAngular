@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import Swal from 'sweetalert2/dist/sweetalert2.esm.js';
 
 import { ListaInscritosComponent } from './lista-inscritos.component';
 
@@ -21,5 +22,24 @@ describe('ListaInscritosComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should escape HTML characters in user name to prevent XSS when confirming deletion', () => {
+    const swalSpy = spyOn(Swal, 'fire').and.returnValue(Promise.resolve({ isConfirmed: false } as any));
+    component.inscritos = [
+      {
+        nombre: '<img src=x onerror=alert(1)> & "Admin"',
+        rutina: 'Fuerza',
+        horario: '07:00 - 09:00',
+        email: 'attacker@test.com'
+      }
+    ];
+
+    component.eliminarInscrito(0);
+
+    expect(swalSpy).toHaveBeenCalled();
+    const callArgs = swalSpy.calls.first().args[0] as any;
+    expect(callArgs.html).toContain('&lt;img src=x onerror=alert(1)&gt; &amp; &quot;Admin&quot;');
+    expect(callArgs.html).not.toContain('<img src=x onerror=alert(1)>');
   });
 });
